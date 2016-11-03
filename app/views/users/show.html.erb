@@ -2,3 +2,10 @@
   <%= gravatar_for @user %>
   <%= @user.name %>
 </h1>
+
+
+  <%= @user.email %>
+  <%= @user.profile %>
+  <%= @user.region %>
+  
+ <%= link_to "edit" , edit_user_path(:id) %>
