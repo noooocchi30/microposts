@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
-  def show # 追加
+  def show
    @user = User.find(params[:id])
+   @microposts = @user.microposts.order(created_at: :desc)
   end
   
   def new
@@ -18,6 +19,16 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  
+  def destroy
+    @micropost = current_user.microposts.find_by(id: params[:id])
+    return redirect_to root_url if @micropost.nil?
+    @micropost.destroy
+    flash[:success] = "Micropost deleted"
+    redirect_to request.referrer || root_url
+  end
+  
   
   private
 
