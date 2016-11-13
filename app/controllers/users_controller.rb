@@ -42,6 +42,17 @@ before_action :current_user_check,only: [:edit,:update]
     redirect_to request.referrer || root_url
   end
 
+  #課題2 追記
+  def followings
+    @user = User.find(params[:id])
+    @users =  @user.following_users
+    
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users =  @user.follower_users
+  end
 
 
   private
